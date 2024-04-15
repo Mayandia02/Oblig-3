@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="bestillbillett.js"></script>
+
+    <title>Kino hjemmeside</title>
+</head>
+    <body>
+        <h1>Bestilling av kinobilletter</h1>
+        <form id="comprarbilletas" onsubmit="return visBilletter()">
+            <label for="velgFilm">Velg film: </label>
+            <select id="velgFilm" name="velgFilm" required>
+                <option value="none"selected disabled hidden>Velg film her</option>
+                <option value="RH1">Ringenes Herre</option>
+                <option value="RH2">Ringenes Herre 2</option>
+                <option value="RH3">Ringenes Herre 3</option>
+            </select>
+    <br>
+
+    <br><br>
+    <label for="antall">Antall</label>
+    <input type="number" id="antall" name="antall">
+    <br><br>
+
+    <label for="fornavn">Fornavn: </label>
+    <input type="text" id="fornavn" name="fornavn" onsubmit="sjekkNavn()">
+    <div id="feilmeldingFornavn"></div>
+        <label for="etternavn">Etternavn: </label>
+    <input type="text" id="etternavn" name="etternavn" onsubmit="sjekkNavn()">
+    <div id="feilmeldingEtternavn"></div>
+    <label for="telefonnr">Telefonnr: </label>
+    <input type="number" id="telefonnr" name="telefonnr" pattern="[0-9]{8}" onsubmit="sjekkTnr()">
+    <div id="ugyldigNr"></div>
+    <label for="epost">Epost: </label>
+    <input type="text" id="epost" name="epost" onsubmit="sjekkEpost()">
+    <div id="uglydigEpost"></div>
+
+    <button class="btn btn-primary" type="submit" name="Kjøp billett">Kjøp billett</button>
+        </form>
+    <h2>Alle billetter: </h2>
+    <div id="utInfo"></div>
+
+    <button class="btn btn-danger" type="submit" onclick="slettBillett()" >Slett alle</button>
+    </body>
+</html>
