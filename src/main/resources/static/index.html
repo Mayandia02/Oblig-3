@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="bestillbillett.js"></script>
 
     <title>Kino hjemmeside</title>
@@ -10,8 +11,8 @@
     <body>
         <h1>Bestilling av kinobilletter</h1>
         <form id="comprarbilletas" onsubmit="return visBilletter()">
-            <label for="velgFilm">Velg film: </label>
-            <select id="velgFilm" name="velgFilm" required>
+            <label for="film">Velg film: </label>
+            <select id="film" name="film" required>
                 <option value="none"selected disabled hidden>Velg film her</option>
                 <option value="RH1">Ringenes Herre</option>
                 <option value="RH2">Ringenes Herre 2</option>
@@ -31,13 +32,13 @@
     <input type="text" id="etternavn" name="etternavn" onsubmit="sjekkNavn()">
     <div id="feilmeldingEtternavn"></div>
     <label for="telefonnr">Telefonnr: </label>
-    <input type="number" id="telefonnr" name="telefonnr" pattern="[0-9]{8}" onsubmit="sjekkTnr()">
+    <input type="number" id="telefonnr" name="telefonnr" onsubmit="sjekkTnr()">
     <div id="ugyldigNr"></div>
     <label for="epost">Epost: </label>
     <input type="text" id="epost" name="epost" onsubmit="sjekkEpost()">
     <div id="uglydigEpost"></div>
 
-    <button class="btn btn-primary" type="submit" onclick="lagreBillett()" name="Kjøp billett">Kjøp billett</button>
+    <button class="btn btn-primary" type="submit" onclick="lagreBillett()">Kjøp billett</button>
         </form>
     <h2>Alle billetter: </h2>
     <div id="utInfo"></div>

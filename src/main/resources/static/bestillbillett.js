@@ -1,3 +1,6 @@
+$(function(){
+   hentBilletter();
+});
 function lagreBillett(){
     const kunde ={
         film : $('#film').val(),
@@ -5,7 +8,7 @@ function lagreBillett(){
         fornavn : $('#fornavn').val(),
         etternavn : $('#etternavn').val(),
         telefonnr : $('#telefonnr').val(),
-        email : $('#email').val()
+        epost : $('#epost').val()
     }
     const url = "/lagre";
     $.ajax({
@@ -16,7 +19,7 @@ function lagreBillett(){
         success: function(){
             window.location.href = 'index.html';
         }
-    })
+    });
     hentBilletter();
 
 
@@ -40,7 +43,7 @@ function lagreBillett(){
             ut += "<td><button class='btn btn-danger' onclick='slettEnkeltBillett(" + i + ")'>Slett</button></td>";
             ut += "</tr>"
         }
-        $('utInfo').html(ut);
+        $('#utInfo').html(ut);
     }
     function hentBilletter(){
     $.get("/visBilletter", function (kunder){
