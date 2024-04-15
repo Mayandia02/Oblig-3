@@ -1,52 +1,51 @@
-let ticketArray = []
-    function visBilletter(){
-        const name = document.getElementById("fornavn").value+
-            " "+ document.getElementById("etternavn").value;
-        const telefonnr = document.getElementById("telefonnr").value;
-        const epost = document.getElementById("epost").value;
-        const antallB = document.getElementById("antall").value;
-        const film = document.getElementById("velgFilm").value;
-
-        if (!sjekkNavn(name)){
-            return false;
+function lagreBillett(){
+    const kunde ={
+        film : $('#film').val(),
+        antall : $('#antall').val(),
+        fornavn : $('#fornavn').val(),
+        etternavn : $('#etternavn').val(),
+        telefonnr : $('#telefonnr').val(),
+        email : $('#email').val()
+    }
+    const url = "/lagre";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(kunde),
+        success: function(){
+            window.location.href = 'index.html';
         }
+    })
+    hentBilletter();
 
-        const kjøpBillett = {
-            name: name,
-            phonenmbr: telefonnr,
-            email: epost,
-            nmbrTickets: antallB,
-            filmName: film
 
-        };
 
-        ticketArray.push(kjøpBillett);
+}
+    function visBilletter(kunder){
+
 
         let ut = "<table class='table table-striped'><tr><th>Navn</th>" +
             "<th>Telefonnummer</th><th>Epost</th>" +
             "<th>Antall Billetter</th><th>Film</th></tr>";
 
-        for (let i = 0; i < ticketArray.length; i++) {
+        for (let i = 0; i < kunder.length; i++) {
             ut += "<tr>";
-            ut += "<td>" + ticketArray[i].name + "</td>";
-            ut += "<td>" + ticketArray[i].phonenmbr + "</td>";
-            ut += "<td>" + ticketArray[i].email + "</td>";
-            ut += "<td>" + ticketArray[i].nmbrTickets + "</td>";
-            ut += "<td>" + ticketArray[i].filmName + "</td>";
+            ut += "<td>" + kunder[i].film + "</td>";
+            ut += "<td>" + kunder[i].antall+ "</td>";
+            ut += "<td>" + kunder[i].fornavn + "</td>";
+            ut += "<td>" + kunder[i].etternavn + "</td>";
+            ut += "<td>" + kunder[i].telefonnr + "</td>";
+            ut += "<td>" + kunder[i].epost + "</td>";
             ut += "<td><button class='btn btn-danger' onclick='slettEnkeltBillett(" + i + ")'>Slett</button></td>";
             ut += "</tr>"
         }
-
-            document.getElementById("fornavn").value = "";
-            document.getElementById("etternavn").value = "";
-            document.getElementById("telefonnr").value = "";
-            document.getElementById("epost").value = "";
-            document.getElementById("antall").value = "";
-            document.getElementById("velgFilm").value = "";
-
-
-        document.getElementById("utInfo").innerHTML = ut;
-        return false;
+        $('utInfo').html(ut);
+    }
+    function hentBilletter(){
+    $.get("/visBilletter", function (kunder){
+        visBilletter(kunder)
+    })
     }
 
 function slettBillett(){

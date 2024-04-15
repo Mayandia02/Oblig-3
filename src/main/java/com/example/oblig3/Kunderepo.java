@@ -14,13 +14,13 @@ public class Kunderepo {
     private JdbcTemplate db;
 
     public void lagreKunde(Kunde innkunde){
-        String sql = "INSERT INTO Kunde (fornavn, etternavn, telefonnr, epost, antall, velgFilm) VALUES(?, ?, ?, ?, ?, ?)";
-        db.update(sql, innkunde.getFornavn(), innkunde.getEtternavn(), innkunde.getTelefonnr(), innkunde.getEpost(), innkunde.getAntall(), innkunde.getFilm());
+        String sql = "INSERT INTO Kunde (film, antall,fornavn, etternavn, telefonnr, epost) VALUES(?, ?, ?, ?, ?, ?)";
+        db.update(sql, innkunde.getFilm(), innkunde.getAntall(), innkunde.getFornavn(), innkunde.getEtternavn(), innkunde.getTelefonnr(), innkunde.getEpost());
 
     }
     public List<Kunde> hentAlleKunder(){
         String sql = "SELECT * FROM Kunde";
-        List<Kunde> alleKunder = db.query(sql, new BeanPropertyRowMapper(Kunde.class));
+        List<Kunde> alleKunder = db.query(sql, new BeanPropertyRowMapper<>(Kunde.class));
         return alleKunder;
     }
     public void slettAlleKunder(){
