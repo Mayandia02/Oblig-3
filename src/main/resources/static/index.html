@@ -1,48 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="bestillbillett.js"></script>
-
     <title>Kino hjemmeside</title>
 </head>
-    <body>
-        <h1>Bestilling av kinobilletter</h1>
-        <form id="comprarbilletas" onsubmit="return visBilletter()">
-            <label for="film">Velg film: </label>
-            <select id="film" name="film" required>
-                <option value="none"selected disabled hidden>Velg film her</option>
-                <option value="RH1">Ringenes Herre</option>
-                <option value="RH2">Ringenes Herre 2</option>
-                <option value="RH3">Ringenes Herre 3</option>
-            </select>
-    <br>
+<body>
+<div class="container mt-4">
+    <h1>Bestilling av kinobilletter</h1>
+    <form id="comprarbilletas" onsubmit="return lagreBillett()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="film">Velg film:</label>
+                <select id="film" name="film" class="form-control" required>
+                    <option value="" selected disabled hidden>Velg film her</option>
+                    <option value="RH1">Ringenes Herre</option>
+                    <option value="RH2">Ringenes Herre 2</option>
+                    <option value="RH3">Ringenes Herre 3</option>
+                </select>
+            </div>
 
-    <br><br>
-    <label for="antall">Antall</label>
-    <input type="number" id="antall" name="antall">
-    <br><br>
-
-    <label for="fornavn">Fornavn: </label>
-    <input type="text" id="fornavn" name="fornavn" onsubmit="sjekkNavn()">
-    <div id="feilmeldingFornavn"></div>
-        <label for="etternavn">Etternavn: </label>
-    <input type="text" id="etternavn" name="etternavn" onsubmit="sjekkNavn()">
-    <div id="feilmeldingEtternavn"></div>
-    <label for="telefonnr">Telefonnr: </label>
-    <input type="number" id="telefonnr" name="telefonnr" onsubmit="sjekkTnr()">
-    <div id="ugyldigNr"></div>
-    <label for="epost">Epost: </label>
-    <input type="text" id="epost" name="epost" onsubmit="sjekkEpost()">
-    <div id="uglydigEpost"></div>
-
-    <button class="btn btn-primary" type="submit" onclick="lagreBillett()">Kjøp billett</button>
-        </form>
-    <h2>Alle billetter: </h2>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="antall">Antall</label>
+            <input type="number" id="antall" name="antall" class="form-control" min="1" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="fornavn">Fornavn:</label>
+                <input type="text" id="fornavn" name="fornavn" class="form-control" onchange="return sjekkNavn(this.value);">
+                <div id="feilmeldingFornavn"></div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="etternavn">Etternavn:</label>
+                <input type="text" id="etternavn" name="etternavn" class="form-control" onchange="return sjekkNavn(this.value);">
+                <div id="feilmeldingEtternavn"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="telefonnr">Telefonnr:</label>
+                <input type="number" id="telefonnr" name="telefonnr" class="form-control" onchange="return sjekkTnr(this.value);">
+                <div id="ugyldigNr"></div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="epost">Epost:</label>
+                <input type="text" id="epost" name="epost" class="form-control" onchange="return sjekkEpost(this);">
+                <div id="uglydigEpost"></div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Kjøp billett</button>
+    </form>
+    <h2>Alle billetter:</h2>
     <div id="utInfo"></div>
-
-    <button class="btn btn-danger" type="submit" onclick="slettBillett()" >Slett alle</button>
-    </body>
+    <button class="btn btn-danger" onclick="slettBilletter()">Slett alle</button>
+</div>
+<script type="text/javascript" src="bestillbillett.js"></script>
+</body>
 </html>

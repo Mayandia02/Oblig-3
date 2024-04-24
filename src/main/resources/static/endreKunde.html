@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Endre</title>
+    <meta charset="UTF-8">
+    <link rel ="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src = "endreKunde.js"></script>
+</head>
+<body>
+<h1>Endre info</h1>
+<form id="billetForm">
+    <input type="hidden" id="id"/>
+    <label for="film">Velg film: </label>
+    <select id="film" name="film" required>
+        <option value="none"selected disabled hidden>Velg film her</option>
+        <option value="RH1">Ringenes Herre</option>
+        <option value="RH2">Ringenes Herre 2</option>
+        <option value="RH3">Ringenes Herre 3</option>
+    </select>
+
+    <br><br>
+    <label for="antall">Antall</label>
+    <input type="number" id="antall" name="antall">
+    <br><br>
+
+    <label for="fornavn">Fornavn: </label>
+    <input type="text" id="fornavn" name="fornavn" onsubmit="sjekkNavn()">
+    <div id="feilmeldingFornavn"></div>
+    <label for="etternavn">Etternavn: </label>
+    <input type="text" id="etternavn" name="etternavn" onsubmit="sjekkNavn()">
+    <div id="feilmeldingEtternavn"></div>
+    <label for="telefonnr">Telefonnr: </label>
+    <input type="number" id="telefonnr" name="telefonnr" onsubmit="sjekkTnr()">
+    <div id="ugyldigNr"></div>
+    <label for="epost">Epost: </label>
+    <input type="text" id="epost" name="epost" onsubmit="sjekkEpost()">
+    <div id="uglydigEpost"></div>
+    <div class="form group">
+        <input type="button" value="Endre" class="btn btn-primary" onclick="endreBiletten()"/>
+         </div>
+      </form>
+    </body>
+</html>

@@ -1,10 +1,7 @@
 package com.example.oblig3;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,7 +9,7 @@ import java.util.List;
 public class Kundekontroller {
 
    @Autowired
-   private Kunderepo rep;
+   Kunderepo rep;
 
     @PostMapping("/lagre")
     public void lagreKunde(@RequestBody Kunde innKunde) {
@@ -24,8 +21,24 @@ public class Kundekontroller {
         return rep.hentAlleKunder();
     }
 
-    @GetMapping("/slettAlle")
+    @GetMapping("/hentBilett")
+    public Kunde hentBilett(int id) {
+        return rep.hentBilett(id);
+    }
+
+    @DeleteMapping("/slettAlle")
     public void SlettAlle(){
         rep.slettAlleKunder();
+    }
+
+    @GetMapping("/slettEnkelt")
+    public String SlettEnkelt(int id) {
+        rep.slettEnkeltKunde(id);
+        return "Slettet";
+    }
+
+    @PostMapping("/oppdater")
+        public void oppdaterBiletten(@RequestBody  Kunde kunde ){
+        rep.oppdaterBiletten(kunde);
     }
 }

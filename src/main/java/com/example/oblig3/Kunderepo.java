@@ -27,4 +27,21 @@ public class Kunderepo {
         String sql = "DELETE FROM Kunde";
         db.update(sql);
     }
+    public void slettEnkeltKunde(int id){
+        String sql = "DELETE FROM Kunde Where id = ?";
+        db.update(sql, id);
+    }
+
+    public void oppdaterBiletten(Kunde kunde){
+        String sql = "UPDATE Kunde SET film=?, antall=?, fornavn=?, etternavn=?, telefonnr=?, epost=? WHERE id=?";
+        db.update(sql, kunde.getFilm(), kunde.getAntall(), kunde.getFornavn(), kunde.getEtternavn(), kunde.getTelefonnr(), kunde.getEpost(), kunde.getId());
+    }
+
+    public Kunde hentBilett(int id) {
+        Object[] param = new Object[1];
+        param[0] = id;
+        String sql = "SELECT * FROM Kunde WHERE id=?";
+        Kunde enBilett = db.queryForObject(sql, param, BeanPropertyRowMapper.newInstance(Kunde.class));
+        return enBilett;
+    }
 }
