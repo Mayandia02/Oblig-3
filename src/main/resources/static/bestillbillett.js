@@ -86,11 +86,27 @@ function sjekkEpost(inputElement) {
 }
 
 function sjekkNavn(name) {
-    if (name.trim().length === 0) {
-        document.getElementById("feilmeldingFornavn").innerHTML = "<p>Ugyldig navn</p>"; // Adjust this ID for etternavn validation if needed
+
+    const validName = /^[a-zA-ZæøåÆØÅ\s]+$/;
+
+    if (!name.trim().match(validName) || name.trim().length === 0) {
+        document.getElementById("feilmeldingFornavn").innerHTML = "<p>Ugyldig navn</p>";
         return false;
     } else {
-        document.getElementById("feilmeldingFornavn").innerHTML = ""; // Clear the error message
+        document.getElementById("feilmeldingFornavn").innerHTML = "";
+        return true;
+    }
+}
+
+function sjekkEnavn(name) {
+
+    const validName = /^[a-zA-ZæøåÆØÅ\s]+$/;
+
+    if (!name.trim().match(validName) || name.trim().length === 0) {
+        document.getElementById("feilmeldingEtternavn").innerHTML = "<p>Ugyldig navn</p>";
+        return false;
+    } else {
+        document.getElementById("feilmeldingEtternavn").innerHTML = "";
         return true;
     }
 }
